@@ -3,7 +3,7 @@ streamlit==1.44.1            # Streamlit stable
 streamlit-extras==0.7.8      # Extra Streamlit components
 python-dotenv==1.1.1         # Load environment variables
 matplotlib==3.10.6           # Plotting
-plotly==6.0.1                # Interactive charts
+plotly==6.0.1                # Interactive charts 
 reportlab==4.3.1             # PDF generation
 joblib==1.4.2                # Model saving/loading
 numpy==2.3.3                 # Stable version compatible with pandas
