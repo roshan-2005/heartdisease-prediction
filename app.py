@@ -1,4 +1,12 @@
 import streamlit as st
+# --- App Config ---
+st.set_page_config(
+    page_title="Cardio-AI",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    page_icon="🩺"
+)
+
 import numpy as np
 import pandas as pd
 import joblib
@@ -131,13 +139,6 @@ def get_theme_config():
         "shadow": "0 4px 30px rgba(0, 0, 0, 0.1)"  # Glass shadow
     }
 
-# --- App Config ---
-st.set_page_config(
-    page_title="Cardio-AI",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    page_icon="🩺"
-)
 
 # --- Theme (Default to Dark) ---
 theme_config = get_theme_config()
@@ -492,7 +493,8 @@ def patient_profile_page():
                     with cols[0]:
                         full_name = st.text_input("Full Name", value=patient['full_name'], key="edit_full_name")
                         date_of_birth = st.date_input("Date of Birth", 
-                                                    value=patient['date_of_birth'], 
+                                                    value=patient['date_of_birth'],
+                                                    min_value=datetime.date(1900,1,1),
                                                     max_value=datetime.date.today(),
                                                     key="edit_dob")
                     with cols[1]:
@@ -554,7 +556,7 @@ def patient_profile_page():
             with col1:
                 start_date = st.date_input("From date", 
                                          value=min_date,
-                                         min_value=datetime.date(min_date.year - 5, 1, 1),
+                                         min_value=datetime.date(min_date.year - 15, 1, 1),
                                          max_value=max_date,
                                          key="start_date_filter")
             with col2:
@@ -693,6 +695,7 @@ def patient_profile_page():
             with st.form("patient_form"):
                 full_name = st.text_input("Full Name", key="patient_full_name")
                 date_of_birth = st.date_input("Date of Birth", 
+                                             min_value=datetime.date(1900,1,1),
                                              max_value=datetime.date.today(), 
                                              key="patient_dob")
                 gender = st.selectbox("Gender", ["Male", "Female", "Other"], key="patient_gender")
